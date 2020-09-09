@@ -25,15 +25,15 @@ exports.handler = async (event) => {
     const client = asana.Client.create().useAccessToken(ASANA_AUTH_TOKEN);
 
     const tasks = await client.tasks.getTasks({ section: SECTION_ID, opt_pretty: true })
-    .catch(err => console.error(err))
-    
+        .catch(err => console.error(err))
+
     // 未登録タスクが0件なら何もしない
     if (tasks.data.length == 0) {
         const response = {
             statusCode: 200
         };
-    
-        return response;        
+
+        return response;
     }
 
     await axios(
